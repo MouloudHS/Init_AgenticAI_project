@@ -28,9 +28,10 @@ EOL
 echo "Installing requirements via uv..."
 uv add -r requirements.txt
 
-# 4. Generate project structure (assumes project_structure_generator.py is in parent dir)
+# 4. Generate project structure (use absolute path to project_structure_generator.py)
 echo "Generating project structure..."
-python3 ../project_structure_generator.py "../$STRUCTURE_YAML" .
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+python3 "$SCRIPT_DIR/project_structure_generator.py" "$SCRIPT_DIR/$STRUCTURE_YAML" .
 
 # 5. Create README.md with current structure
 echo "Generating README.md with project tree..."
